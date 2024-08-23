@@ -1,0 +1,76 @@
+﻿<RibbonWindow
+    x:Class="BMWPaint.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:icons="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:local="clr-namespace:BMWPaint"
+    xmlns:skia="clr-namespace:SkiaSharp.Views.WPF;assembly=SkiaSharp.Views.WPF"
+    Title="BMW Paint"
+    Width="640"
+    Height="480">
+    <Window.DataContext>
+        <local:MainViewModel />
+    </Window.DataContext>
+    <Window.Resources>
+        <local:EnumToBoolConverter x:Key="EnumToBoolConverter" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="8*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+        <Ribbon Grid.Row="0">
+            <Ribbon.ApplicationMenu>
+                <RibbonApplicationMenu Visibility="Collapsed" />
+            </Ribbon.ApplicationMenu>
+            <RibbonTab Header="홈">
+                <RibbonGroup Header="도구">
+                    <RibbonToggleButton
+                        IsChecked="{Binding SelectTool, Converter={StaticResource EnumToBoolConverter}, ConverterParameter=Line}"
+                        Label="직선"
+                        LargeImageSource="{icons:MaterialImage Kind=VectorPolyline,
+                                                               Brush=DimGray}" />
+                    <RibbonToggleButton
+                        IsChecked="{Binding SelectTool, Converter={StaticResource EnumToBoolConverter}, ConverterParameter=Curve}"
+                        Label="곡선"
+                        LargeImageSource="{icons:MaterialImage Kind=VectorCurve,
+                                                               Brush=DimGray}" />
+                    <RibbonToggleButton
+                        IsChecked="{Binding SelectTool, Converter={StaticResource EnumToBoolConverter}, ConverterParameter=Rect}"
+                        Label="사각형"
+                        LargeImageSource="{icons:MaterialImage Kind=RectangleOutline,
+                                                               Brush=DimGray}" />
+                    <RibbonToggleButton
+                        IsChecked="{Binding SelectTool, Converter={StaticResource EnumToBoolConverter}, ConverterParameter=Circle}"
+                        Label="원"
+                        LargeImageSource="{icons:MaterialImage Kind=Circle,
+                                                               Brush=DimGray}" />
+                    <RibbonToggleButton
+                        IsChecked="{Binding SelectTool, Converter={StaticResource EnumToBoolConverter}, ConverterParameter=Oval}"
+                        Label="타원"
+                        LargeImageSource="{icons:MaterialImage Kind=EllipseOutline,
+                                                               Brush=DimGray}" />
+                    <RibbonToggleButton
+                        IsChecked="{Binding SelectTool, Converter={StaticResource EnumToBoolConverter}, ConverterParameter=Image}"
+                        Label="그림"
+                        LargeImageSource="{icons:MaterialImage Kind=Image,
+                                                               Brush=DimGray}" />
+                </RibbonGroup>
+            </RibbonTab>
+        </Ribbon>
+        <Grid Grid.Row="1">
+            <skia:SKElement>
+                <behaviors:Interaction.Behaviors>
+                    <local:MouseEventBehavior EventHandler="{Binding MouseVM, Mode=OneTime}" />
+                    <local:SKElementBehavior EventHandler="{Binding CanvasVM, Mode=OneTime}" />
+                </behaviors:Interaction.Behaviors>
+            </skia:SKElement>
+        </Grid>
+        <TextBox
+            x:Name="LogViewer"
+            Grid.Row="2"
+            VerticalScrollBarVisibility="Auto" />
+    </Grid>
+</RibbonWindow>

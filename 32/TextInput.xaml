@@ -1,0 +1,27 @@
+﻿<UserControl
+    x:Class="BMWPaint.TextInput"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:BMWPaint"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DataContext="{d:DesignInstance local:TextInputViewModel}"
+    mc:Ignorable="d">
+    <Canvas>
+        <TextBox
+            Canvas.Left="{Binding Left}"
+            Canvas.Top="{Binding Top}"
+            Margin="0"
+            Padding="0"
+            Background="Transparent"
+            BorderThickness="1"
+            FontSize="{Binding FontSize}"
+            Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}"
+            Visibility="{Binding Visibility, Mode=TwoWay}">
+            <behaviors:Interaction.Behaviors>
+                <local:TextInputBehavior />
+            </behaviors:Interaction.Behaviors>
+        </TextBox>
+    </Canvas>
+</UserControl>

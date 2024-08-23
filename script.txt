@@ -1,0 +1,14 @@
+00	https://learn.microsoft.com/ko-kr/dotnet/api/system.drawing?view=net-8.0
+	https://skia.org/about/ 
+	https://github.com/mono/SkiaSharp
+	https://learn.microsoft.com/ko-kr/dotnet/api/skiasharp?view=skiasharp-2.88
+01 view https://github.com/search?type=code&auto_enroll=true&q=%22PaintSurface%22+language%3AC%23+path%3Axaml.cs
+02 Behavior, viewmodel, SKPaint, draw
+11 model, canvas list
+12 Input, refresh
+13 ObservableCollection
+21 MouseBehavior, MouseViewModel
+31 Tool
+32 Text
+41 Export
+51 Pan Zoom
